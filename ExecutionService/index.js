@@ -1,10 +1,18 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
-import bootstrap from './bootstrap.js';
+import bootstrap from './bootstrap/Bootstrap.js';
+import FormRoutes from './Routes/FormRoutes.js';
+import FormModel from './model/FormModel.js';
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+bootstrap(app);
 
-bootstrap();
-const PORT = process.env.PORT || 6000;
-app.listen(PORT, () => console.log(`Execution Service Running on PORT: ${PORT}`));
+app.get("/healthCheck", (req, res) => {
+    res.json({ success: true, code: 200, data: `Service Running on PORT: ${PORT}`, err: null })
+});
+
+app.use("/form", FormRoutes);
+
+app.listen(PORT, () => console.log(`PORT: ${PORT}`))
