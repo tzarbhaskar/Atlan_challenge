@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import FormModel from '../model/FormModel.js';
 import ResponseModel from '../model/ResponseModel.js';
-import ActionMap from '../config/ActionMap.js';
 import { kafkaProducer } from '../config/KafkaConfig.js';
+import ActionLookup from '../config/ActionMap.js';
 const router = Router();
 
 router.post("/create", async (req, res) => {
@@ -28,7 +28,7 @@ router.put("/actionList/add", async (req, res) => {
     const { formId, actionIds } = req.body;
     const { actionList } = await FormModel.findById(formId);
     actionIds.forEach((actionId) => {
-        if (actionList.indexOf(actionId) == -1 && ActionMap[actionId]) {
+        if (actionList.indexOf(actionId) == -1 && ActionLookup[actionId]) {
             actionList.push(actionId);
         }
     });
