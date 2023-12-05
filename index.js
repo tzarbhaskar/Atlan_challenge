@@ -4,7 +4,6 @@ import express from 'express';
 import bootstrap from './bootstrap/Bootstrap.js';
 import FormRoutes from './Routes/FormRoutes.js';
 
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 bootstrap(app);
