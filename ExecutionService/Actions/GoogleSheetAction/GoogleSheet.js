@@ -1,4 +1,4 @@
-import credentials from '../../Config/serviceAccount.json';
+import credentials from '../../Config/serviceAccount.json' assert { type: "json" };
 import { google } from 'googleapis';
 class GoogleSheet {
 
