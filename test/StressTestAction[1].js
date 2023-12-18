@@ -4,6 +4,7 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const test = async (count) => {
+    console.time("A");
     while (count > 0) {
         const randomName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
         const companyName = uniqueNamesGenerator({ dictionaries: [adjectives, colors] });
@@ -11,7 +12,7 @@ const test = async (count) => {
             "formId": "656f8798c005112bbfd1cd71",
             "response": [
                 randomName,
-                `thebhaskarsharma@gmail.com`,
+                `tzarbhaskar@gmail.com`,
                 getRndInteger(18, 55),
                 companyName,
                 "Male",
@@ -33,8 +34,8 @@ const test = async (count) => {
         await axios(config)
         count = count - 1;
     }
-
+    console.timeEnd("A");
 
 }
 
-test(100);
+test(1);
