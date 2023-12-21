@@ -3,7 +3,7 @@ import extractEmailFromFormAndResponse from '../Utils/extractEmailFromFormAndRes
 import collectFailedActions from '../Utils/collectFailedActions.js';
 
 const sendMailReceiptToParticipant = async (responses, form) => {
-    const actionId = 2;
+    const actionId = 2; 
     try {
         const emails = extractEmailFromFormAndResponse(responses, form);
         const promises = emails.map(email => {
