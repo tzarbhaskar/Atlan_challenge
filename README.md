@@ -1,5 +1,5 @@
 
-# Atlan Challenge Solution
+# Gform_Backend
 by Bhaskar Sharma
 
 # Set Up: 
@@ -17,19 +17,6 @@ by Bhaskar Sharma
 # Postman Link: https://www.postman.com/spaceflight-geologist-9668923/workspace/atlan/collection/31551786-04460cd3-4ae6-4280-81e9-57dc30bc9505?action=share&creator=31551786
 
 
-# Problem Statement Interpretation
-
- Forms with questions are used in the process of data collection
- After a user fills the form, the responses hit the datastore
-There is some post submission logic that needs to be executed
-These Post Submission Business Logic Use Cases  are called as Actions in my implementation
-
-
-# Tasks
-* Create a Schematic of Forms, Questions, Responses
-* Create a System that executes a list of post-submission logics in a plug and play fashion
-
-
 # Thought Process
 
 * There should be a Form Entity that contains a list of questions
@@ -38,7 +25,7 @@ These Post Submission Business Logic Use Cases  are called as Actions in my impl
 * Save them in a datastore
 * Execute all the relevant actions to this particular form
 
-We could have done this synchronously as well, i.e do this all one after the other, but that would introduce some issues as it would block our application and make it slow. It would act as a bottleneck.
+Could have done this synchronously as well, i.e do this all one after the other, but that would introduce some issues as it would block our application and make it slow. It would act as a bottleneck.
 
 Alternatively, we can separate the two steps(saving form and running actions) so that both tasks are independent of each other and can be scaled individually
 
@@ -57,7 +44,7 @@ To make it asynchronous(As we are expecting eventual consistency and a fault-tol
 
 # Schemas
 
-actionList contains ID of actions that need to be executed for each form.
+ActionList contains ID of actions that need to be executed for each form.
  For Example: 1: saveResponseToGoogleSheet, 2: sendMailToParticipant
 Action Parameters are configurable parameters pertaining to each handler
 For Example: googleSheetLink
@@ -68,10 +55,6 @@ For Example: googleSheetLink
 
 
 # Architecture and Workflow
-
-
-
-
 
 
 Upon submitting a response, the Submission API performs the following actions:
@@ -115,4 +98,3 @@ For n=200, the Execution Pipeline, handling 2 implemented actions with zero fail
 completed in under 4 minutes. 
 
 The adoption of batch processing significantly enhanced performance, as compared to the previous single processing approach, which took 10 minutes for n=100.
-
